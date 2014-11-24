@@ -106,6 +106,11 @@ class Life_Client_Core
 		class robAction {};
 		class captureHideout {};
 		class gather {};
+
+		//CRAFTING SYSTEM
+		class craftAction {};
+
+
 	};
 	
 	class Housing
@@ -146,6 +151,9 @@ class Life_Client_Core
 		class vehicleWeightCfg {};
 		class houseConfig {};
 		
+		//CRAFTING SYSTEM
+		class craftCfg {};
+		
 		//Clothing Store Configs
 		class clothing_cop {};
 		class clothing_bruce {};
@@ -175,6 +183,10 @@ class Life_Client_Core
 		class updateViewDistance {};
 		class settingsMenu {};
 		class settingsInit {};
+		
+		//CRAFTING SYSTEM
+		class craft {};
+		class craft_update {};
 	};
 	
 	class Functions

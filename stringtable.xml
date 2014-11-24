@@ -303,6 +303,61 @@
 			<Portuguese>Você depositou R$%1 na conta de sua gangue.</Portuguese>
  		</Key>
 	</Package>
+	
+	<Package name="Craft">
+		<Key ID="STR_CRAFT_Title">
+			<Original>Crafting Menu</Original>
+ 			<English>Crafting Menu</English>
+ 			<German>Crafting Menu</German>
+			<French>Menu de Crafting</French>
+			<Italian>Crafting Menu</Italian>
+			<Portuguese>Crafting Menu</Portuguese>
+		</Key>
+		<Key ID="STR_PM_CraftStats">
+			<Original>Object to craft</Original>
+ 			<English>Object to craft</English>
+ 			<German>Object to craft</German>
+			<French>Objet à crafter</French>
+			<Italian>Object to craft</Italian>
+			<Portuguese>Object to craft</Portuguese>
+		</Key>
+		<Key ID="STR_PM_CraftMaterials">
+			<Original>Materials needed</Original>
+ 			<English>Materials needed</English>
+ 			<German>Materials needed</German>
+			<French>Materiaux requis</French>
+			<Italian>Materials needed</Italian>
+			<Portuguese>Materials needed</Portuguese>
+		</Key>
+		<Key ID="STR_CRAFT_Button">
+			<Original>Craft !</Original>
+ 			<English>Craft !</English>
+ 			<German>Craft !</German>
+			<French>Craft !</French>
+			<Italian>Craft !</Italian>
+			<Portuguese>Craft !</Portuguese>
+		</Key>
+		<Key ID="STR_PM_NoMaterial">
+			<Original>You do not have all the required materials !</Original>
+ 			<English>You do not have all the required materials !</English>
+ 			<German>You do not have all the required materials !</German>
+			<French>Vous n'avez pas tous les matériaux requis !</French>
+			<Italian>You do not have all the required materials !</Italian>
+			<Portuguese>You do not have all the required materials !</Portuguese>
+		</Key>
+		<Key ID="STR_CRAFT_Process">
+			<Original>You have crafted : %1</Original>
+			<English>You have crafted : %1</English>
+			<German>You have crafted : %1</German>
+			<French>Vous avez crafté : %1</French>
+			<Italian>You have crafted : %1</Italian>
+			<Portuguese>You have crafted : %1</Portuguese>
+		</Key>
+
+
+	</Package>
+	
+	
 	<Package name="Cell_Phone">
 		<Key ID="STR_CELL_Title">
 			<Original>Altis Mobile</Original>
@@ -1083,6 +1138,14 @@
 			<French>Menu Admin</French>
 			<Italian>Menu Admin</Italian>
 			<Portuguese>Admin Menu</Portuguese>
+		</Key>
+		<Key ID="STR_PM_Craft">
+			<Original>Craft</Original>
+			<English>Craft</English>
+			<German>Craft</German>
+			<French>Craft</French>
+			<Italian>Craft</Italian>
+			<Portuguese>Craft</Portuguese>
 		</Key>
 		<Key ID="STR_PM_SyncData">
 			<Original>Sync Data</Original>
