@@ -30,4 +30,52 @@ switch(_craft) do
 			};
 		};
 	};
+
+	case "cloth":
+	{
+		switch(true) do
+		{
+			default
+			{
+				["Clothes",
+					[
+						//[Object classname, [item #1,quantity item #1,item #2,quantity item #2]],]
+						["U_IG_Guerilla1_1", ["life_inv_goldbar",1]]
+					]
+				];
+			};
+		};
+	};
+
+	case "backpack":
+	{
+		switch(true) do
+		{
+			default
+			{
+				["Backpacks",
+					[
+						//[Object classname, [item #1,quantity item #1,item #2,quantity item #2]],]
+						["B_Carryall_oli", ["life_inv_goldbar",1]]
+					]
+				];
+			};
+		};
+	};
+
+	case "item":
+	{
+		switch(true) do
+		{
+			default
+			{
+				["Items",
+					[
+						//[Object classname, [item #1,quantity item #1,item #2,quantity item #2]],]
+						["life_inv_pickaxe", ["life_inv_goldbar",1]]
+					]
+				];
+			};
+		};
+	};
 };

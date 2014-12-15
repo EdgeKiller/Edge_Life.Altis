@@ -187,6 +187,7 @@ class Life_Client_Core
 		//CRAFTING SYSTEM
 		class craft {};
 		class craft_update {};
+		class craft_updateFilter {};
 	};
 	
 	class Functions

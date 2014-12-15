@@ -354,6 +354,40 @@
 			<Portuguese>You have crafted : %1</Portuguese>
 		</Key>
 
+		<Key ID="STR_CRAFT_FILTER_Weapon">
+			<Original>Weapons</Original>
+ 			<English>Weapons</English>
+ 			<German>Weapons</German>
+			<French>Armes</French>
+			<Italian>Weapons</Italian>
+			<Portuguese>Weapons</Portuguese>
+		</Key>
+
+		<Key ID="STR_CRAFT_FILTER_Uniform">
+			<Original>Uniforms</Original>
+ 			<English>Uniforms</English>
+ 			<German>Uniforms</German>
+			<French>Uniformes</French>
+			<Italian>Uniforms</Italian>
+			<Portuguese>Uniforms</Portuguese>
+		</Key>
+		<Key ID="STR_CRAFT_FILTER_Backpack">
+			<Original>Backpacks</Original>
+ 			<English>Backpacks</English>
+ 			<German>Backpacks</German>
+			<French>Sacs à dos</French>
+			<Italian>Backpacks</Italian>
+			<Portuguese>Backpacks</Portuguese>
+		</Key>
+		<Key ID="STR_CRAFT_FILTER_Item">
+			<Original>Items</Original>
+ 			<English>Items</English>
+ 			<German>Items</German>
+			<French>Items</French>
+			<Italian>Items</Italian>
+			<Portuguese>Items</Portuguese>
+		</Key>
+
 
 	</Package>
 	

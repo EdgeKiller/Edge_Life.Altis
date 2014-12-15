@@ -5,7 +5,7 @@
 	Description:
 	Master handling for crafting an item.
 */
-private["_dialog","_item","_itemInfo","_oldItem","_newItem","_upp","_itemName","_ui","_progress","_pgText","_cP","_allMaterial","_matsNeed","_invSize","_handledItem"];
+private["_dialog","_item","_itemInfo","_oldItem","_newItem","_upp","_itemName","_ui","_progress","_pgText","_cP","_allMaterial","_matsNeed","_invSize","_handledItem","_itemFilter","_backpackOldItems"];
 
 disableSerialization;
 
@@ -13,12 +13,13 @@ _dialog = findDisplay 666;
 if((lbCurSel 669) == -1) exitWith {hint localize "STR_ISTR_SelectItemFirst";};
 _item = lbData[669,(lbCurSel 669)];
 _allMaterial = true;
+_itemFilter = lbData[673,(lbCurSel 673)];
 
 _matsNeed = 0;
 
-if(!(player canAdd _item)) exitWith {hint localize "STR_NOTF_NoRoom";};
+if(!(player canAdd _item) && _itemFilter != "backpack" && _itemFilter != "item") exitWith {hint localize "STR_NOTF_NoRoom";};
 
-_config = ["weapon"] call life_fnc_craftCfg;
+_config = [_itemFilter] call life_fnc_craftCfg;
 {
 
 	if(_item == _x select 0)then
@@ -48,8 +49,12 @@ if((count _matsNeed) == 0) exitWith {};
 _oldItem = _matsNeed;
 _newItem = _item;
 
-_itemInfo = [_newItem] call life_fnc_fetchCfgDetails;
-_itemName = _itemInfo select 1;
+if(_itemFilter == "item") then{
+	_itemName = [_newItem] call life_fnc_varToStr;
+} else {
+	_itemInfo = [_newItem] call life_fnc_fetchCfgDetails;
+	_itemName = _itemInfo select 1;
+};
 
 _upp = format["Crafting %1",_itemName];
 
@@ -78,7 +83,7 @@ for [{_i = 0},{_i < _invSize - 1},{_i = _i + 2}] do {
 	if(!([false,_handledItem,_oldItem select _i+1] call life_fnc_handleInv)) exitWith {_removeItemSuccess = false;};
 };
 if(!_removeItemSuccess) exitWith {5 cutText ["","PLAIN"]; life_is_processing = false;};
-
+[] call life_fnc_p_updateMenu;
 
 life_is_processing = true;
 
@@ -93,15 +98,35 @@ while{true} do
 
 _invSize = count _oldItem;
 
-if(!(player addItem _item)) exitWith {
-	5 cutText ["","PLAIN"];
-
-	for [{_i = 0},{_i < _invSize - 1},{_i = _i + 2}] do {
-		_handledItem = [_oldItem select _i,1] call life_fnc_varHandle;
-		[true,_handledItem,_oldItem select _i+1] call life_fnc_handleInv;
+if(_itemFilter == "backpack") then{
+		player addBackpack _newItem;
+} else {
+	if(_itemFilter == "item") then{
+		_handledItem = [_newItem,1] call life_fnc_varHandle;
+		if([true,_handledItem,1] call life_fnc_handleInv) then {
+			exitWith{};
+		} else {
+			for [{_i = 0},{_i < _invSize - 1},{_i = _i + 2}] do {
+				_handledItem = [_oldItem select _i,1] call life_fnc_varHandle;
+				[true,_handledItem,_oldItem select _i+1] call life_fnc_handleInv;
+			};
+		};
+	} else {
+		if(!(player addItem _newItem)) exitWith {
+			5 cutText ["","PLAIN"];
+			for [{_i = 0},{_i < _invSize - 1},{_i = _i + 2}] do {
+				_handledItem = [_oldItem select _i,1] call life_fnc_varHandle;
+				[true,_handledItem,_oldItem select _i+1] call life_fnc_handleInv;
+			};
+			life_is_processing = false;
+		};
 	};
-	life_is_processing = false;
+
 };
+
+
+
+
 5 cutText ["","PLAIN"];
 titleText[format[localize "STR_CRAFT_Process",_itemName],"PLAIN"];
 life_is_processing = false;

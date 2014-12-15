@@ -4,7 +4,7 @@
 	Created by EdgeKiller
     Coder: EdgeKiller
 */
-private["_dialog","_inv","_config","_itemInfo"]; //Declare all private variables
+private["_dialog","_inv","_itemInfo","_filter"]; //Declare all private variables
 if(!dialog) then { //Verify if the window is open
 	createDialog "Life_craft";
 };
@@ -20,42 +20,15 @@ _dialog = findDisplay 666; //find the craft dialog/window
 _inv = _dialog displayCtrl 669; //find the listbox of items can be created
 lbClear _inv; //clear the listbox
 
+_filter = _dialog displayCtrl 673;
+_filter lbAdd localize "STR_CRAFT_FILTER_Weapon";
+_filter lbSetData[(lbSize _filter)-1,"weapon"];
+_filter lbAdd localize "STR_CRAFT_FILTER_Uniform";
+_filter lbSetData[(lbSize _filter)-1,"cloth"];
+_filter lbAdd localize "STR_CRAFT_FILTER_Backpack";
+_filter lbSetData[(lbSize _filter)-1,"backpack"];
+_filter lbAdd localize "STR_CRAFT_FILTER_Item";
+_filter lbSetData[(lbSize _filter)-1,"item"];
 
-_config = ["weapon"] call life_fnc_craftCfg;
-{
-	_itemInfo = [_x select 0] call life_fnc_fetchCfgDetails;
-	_inv lbAdd format["%1",_itemInfo select 1]; //add a gun to the listbox
-	_inv lbSetData[(lbSize _inv)-1,_itemInfo select 0]; //set the data of the gun
-	_inv lbSetPicture[(lbSize _inv)-1,_itemInfo select 2];
+_filter lbSetCurSel 0;
 
-} foreach (_config select 1);
-
-
-
-
-
-/*
-Documentation :
-
-FetchCfgDetails
-_ret = [_entity,_displayName,_picture,_scope,_type,_itemInfo,_cfg,_magazines,_muzzles,_desc,_acc_p,_acc_o,_acc_m,_base,_slotclasses];
-
-
-_config = [_this select 3] call life_fnc_weaponShopCfg;
-if(typeName _config == "STRING") exitWith {hint _config; closeDialog 0;};
-
-_config = [_shop] call life_fnc_weaponShopCfg;
-		{
-			_itemInfo = [_x select 0] call life_fnc_fetchCfgDetails;
-			_itemList lbAdd format["%1",if(isNil {_x select 1}) then {_itemInfo select 1} else {_x select 1}];
-			_itemList lbSetData[(lbSize _itemList)-1,_itemInfo select 0];
-			_itemList lbSetPicture[(lbSize _itemList)-1,_itemInfo select 2];
-			_itemList lbSetValue[(lbSize _itemList)-1,_x select 2];
-		} foreach (_config select 1);
-
-
-for [{_i = 0},{_i <= 5},{_i = _i + 1}] do {
- // code
-};
-
-*/

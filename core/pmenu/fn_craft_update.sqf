@@ -4,7 +4,7 @@
 	Created by EdgeKiller
     Coder: EdgeKiller
 */
-private["_dialog","_inv","_mats","_item","_struct","_str","_invSize","_matsNeed","_matsNum","_config"]; //Declare all private variables
+private["_dialog","_inv","_mats","_item","_struct","_str","_invSize","_matsNeed","_matsNum","_config","_itemFilter"]; //Declare all private variables
 disableSerialization; //Disable Serialization
 
 _dialog = findDisplay 666; //find the craft dialog/window
@@ -13,9 +13,11 @@ _mats = _dialog displayCtrl 672;
 _struct = "";
 if((lbCurSel 669) == -1) exitWith {hint localize "STR_ISTR_SelectItemFirst";};
 _item = lbData[669,(lbCurSel 669)];
+_itemFilter = lbData[673,(lbCurSel 673)];
 
 
-_config = ["weapon"] call life_fnc_craftCfg;
+
+_config = [_itemFilter] call life_fnc_craftCfg;
 {
 
 	if(_item == _x select 0)then

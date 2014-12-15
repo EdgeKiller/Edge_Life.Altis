@@ -1,11 +1,11 @@
 /*
 	File: fn_colorVehicle.sqf
 	Author: Bryan "Tonic" Boardwine
-	
+
 	Description:
 	Reskins the vehicle
 */
-private["_vehicle","_index","_texture","_texture2","_texture3"];
+private["_vehicle","_index","_texture","_texture2","_texture3","_uid","_numberPlate","_numberPlateArray"];
 _vehicle = [_this,0,Objnull,[Objnull]] call BIS_fnc_param;
 _index = [_this,1,-1,[0]] call BIS_fnc_param;
 if(isNull _vehicle OR !alive _vehicle OR _index == -1) exitWith {};
@@ -57,3 +57,17 @@ if(typeOf _vehicle == "C_Offroad_01_F") then
 		_vehicle setObjectTexture[1,_texture];
 	};
 };
+
+if(typeOf _vehicle == "cl3_reventon_white") then
+{
+	_uid = getPlayerUID player;
+	_numberPlateArray = toArray _uid;
+	_vehicle setObjectTexture[1,"\cl3_vehiclefunctions\numberplate\" + toString([_numberPlateArray select 10]) + ".paa"];
+	_vehicle setObjectTexture[2,"\cl3_vehiclefunctions\numberplate\" + toString([_numberPlateArray select 11]) + ".paa"];
+	_vehicle setObjectTexture[3,"\cl3_vehiclefunctions\numberplate\" + toString([_numberPlateArray select 12]) + ".paa"];
+	_vehicle setObjectTexture[4,"\cl3_vehiclefunctions\numberplate\" + toString([_numberPlateArray select 13]) + ".paa"];
+	_vehicle setObjectTexture[5,"\cl3_vehiclefunctions\numberplate\" + toString([_numberPlateArray select 14]) + ".paa"];
+	_vehicle setObjectTexture[6,"\cl3_vehiclefunctions\numberplate\" + toString([_numberPlateArray select 15]) + ".paa"];
+	_vehicle setObjectTexture[7,"\cl3_vehiclefunctions\numberplate\" + toString([_numberPlateArray select 16]) + ".paa"];
+};
+

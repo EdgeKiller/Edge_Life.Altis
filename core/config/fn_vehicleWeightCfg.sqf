@@ -1,7 +1,7 @@
 /*
 	File: fn_vehicleWeightCfg.sqf
 	Author: Bryan "Tonic" Boardwine
-	
+
 	Description:
 	Master configuration for vehicle weight.
 */
@@ -44,5 +44,6 @@ switch (_className) do
 	case "Land_CargoBox_V1_F": {5000};
 	case "Box_IND_Grenades_F": {350};
 	case "B_supplyCrate_F": {700};
+	case "cl3_reventon_white": {50};
 	default {-1};
 };

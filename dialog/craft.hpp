@@ -54,6 +54,7 @@ class Life_craft {
 			w = 0.275; h = 0.04;
 		};
 
+		//Craft list
 		class craftList : life_RscListBox
 		{
 			idc = 669;
@@ -64,6 +65,7 @@ class Life_craft {
 			w = 0.275; h = 0.44;
 		};
 
+		//Materials list header
 		class materialListHeader : Life_RscText
 		{
 			idc = 670;
@@ -74,6 +76,7 @@ class Life_craft {
 			w = 0.275; h = 0.04;
 		};
 
+		//Materials list
 		class materialList : Life_RscControlsGroup
 		{
 			idc = 671;
@@ -97,8 +100,21 @@ class Life_craft {
 			};
 		};
 
+		//FILTER
+		class FilterList : Life_RscCombo
+		{
+			idc = 673;
+			colorBackground[] = {0,0,0,0.7};
+			onLBSelChanged  = "[] call life_fnc_craft_updateFilter";
+			x = 0.69;
+			y = 0.32;
+			w = (6.25 / 30);
+			h = (1 / 25);
+		};
+
+		//Craft button
 		class ButtonCraft : Life_RscButtonMenu {
-			idc = 672;
+			idc = 674;
 			text = "$STR_CRAFT_Button";
 			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.3843])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.7019])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.8862])", 0.5};
 			onButtonClick = "if(!life_is_processing) then {[] spawn life_fnc_craftAction};";
