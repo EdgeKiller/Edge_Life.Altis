@@ -57,17 +57,3 @@ if(typeOf _vehicle == "C_Offroad_01_F") then
 		_vehicle setObjectTexture[1,_texture];
 	};
 };
-
-if(typeOf _vehicle == "cl3_reventon_white") then
-{
-	_uid = getPlayerUID player;
-	_numberPlateArray = toArray _uid;
-	_vehicle setObjectTexture[1,"\cl3_vehiclefunctions\numberplate\" + toString([_numberPlateArray select 10]) + ".paa"];
-	_vehicle setObjectTexture[2,"\cl3_vehiclefunctions\numberplate\" + toString([_numberPlateArray select 11]) + ".paa"];
-	_vehicle setObjectTexture[3,"\cl3_vehiclefunctions\numberplate\" + toString([_numberPlateArray select 12]) + ".paa"];
-	_vehicle setObjectTexture[4,"\cl3_vehiclefunctions\numberplate\" + toString([_numberPlateArray select 13]) + ".paa"];
-	_vehicle setObjectTexture[5,"\cl3_vehiclefunctions\numberplate\" + toString([_numberPlateArray select 14]) + ".paa"];
-	_vehicle setObjectTexture[6,"\cl3_vehiclefunctions\numberplate\" + toString([_numberPlateArray select 15]) + ".paa"];
-	_vehicle setObjectTexture[7,"\cl3_vehiclefunctions\numberplate\" + toString([_numberPlateArray select 16]) + ".paa"];
-};
-

@@ -191,24 +191,6 @@ switch (_vehicle) do
 		];
 	};
 
-	case "cl3_reventon_white":
-	{
-		_ret =
-		[
-			["\edge_textureaddon\camo\camo_01.paa","civ"],
-			["\edge_textureaddon\camo\camo_02.paa","civ"],
-			["\edge_textureaddon\camo\camo_03.paa","civ"],
-			["\edge_textureaddon\camo\camo_04.paa","civ"],
-			["\edge_textureaddon\camo\camo_05.paa","civ"],
-			["\edge_textureaddon\camo\camo_06.paa","civ"],
-			["\edge_textureaddon\camo\camo_07.paa","civ"],
-			["\edge_textureaddon\camo\camo_08.paa","civ"],
-			["\edge_textureaddon\camo\camo_09.paa","civ"],
-			["\edge_textureaddon\camo\camo_10.paa","civ"],
-			["\edge_textureaddon\camo\camo_11.paa","civ"]
-		];
-	};
-
 };
 
 _ret;

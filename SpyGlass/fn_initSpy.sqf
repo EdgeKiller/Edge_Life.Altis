@@ -7,7 +7,7 @@
 
 	Will also become a standalone system which is why it's setup like this.
 */
-exitWith {};
+exitWith {hint "Spyglass Dislabed !"};
 private["_binConfigPatches","_cfgPatches","_endM"];
 if(isServer && !hasInterface) exitWith {}; //Server doesn't need to know.
 #define __CONST__(var1,var2) var1 = compileFinal (if(typeName var2 == "STRING") then {var2} else {str(var2)})

@@ -5,7 +5,7 @@
 	Description:
 	Master handling for crafting an item.
 */
-private["_dialog","_item","_itemInfo","_oldItem","_newItem","_upp","_itemName","_ui","_progress","_pgText","_cP","_allMaterial","_matsNeed","_invSize","_handledItem","_itemFilter","_backpackOldItems"];
+private["_dialog","_item","_itemInfo","_oldItem","_newItem","_upp","_itemName","_ui","_progress","_pgText","_cP","_allMaterial","_matsNeed","_invSize","_handledItem","_itemFilter","_backpackOldItems","_weight"];
 
 disableSerialization;
 
@@ -17,8 +17,6 @@ _itemFilter = lbData[673,(lbCurSel 673)];
 
 _matsNeed = 0;
 
-if(!(player canAdd _item) && _itemFilter != "backpack" && _itemFilter != "item") exitWith {hint localize "STR_NOTF_NoRoom";};
-
 _config = [_itemFilter] call life_fnc_craftCfg;
 {
 
@@ -26,7 +24,7 @@ _config = [_itemFilter] call life_fnc_craftCfg;
 	{
 		_matsNeed = _x select 1;
 		_invSize = count _matsNeed;
-		for [{_i = 0},{_i < _invSize - 1},{_i = _i + 2}] do {
+		for [{_i=0},{_i<_invSize-1},{_i=_i+2}] do {
 
 			_str = [_matsNeed select _i] call life_fnc_varToStr;
 			_matsNum = _matsNeed select _i+1;
@@ -39,13 +37,29 @@ _config = [_itemFilter] call life_fnc_craftCfg;
 
 if(!_allMaterial) exitWith {hint localize "STR_PM_NoMaterial";};
 
-//Error checking
+//Some checks
 if((count _matsNeed) == 0) exitWith {};
 
+if(_itemFilter == "backpack" && backpack player != "") exitWith{
+		hint localize "STR_CRAFT_AR_Backpack";
+};
+
+if(_itemFilter == "uniform" && uniform player != "") exitWith{
+		hint localize "STR_CRAFT_AR_Uniform";
+};
+
+if(_itemFilter == "item") then {
+	_weight = ([_item] call life_fnc_itemWeight);
+};
+if(_itemFilter == "item" && (life_carryWeight + _weight) > life_maxWeight) exitWith {
+	hint localize "STR_NOTF_NoRoom";
+};
+
+if(_itemFilter == "weapon" && !(player canAdd _newItem) || currentWeapon player != "") exitWith {
+	hint localize "STR_NOTF_NoRoom";
+};
 
 
-
-//Setup vars.
 _oldItem = _matsNeed;
 _newItem = _item;
 
@@ -57,13 +71,6 @@ if(_itemFilter == "item") then{
 };
 
 _upp = format["Crafting %1",_itemName];
-
-
-
-
-//Some more checks
-if((count _oldItem) == 0) exitWith {};
-
 closeDialog 0;
 
 //Setup our progress bar.
@@ -77,7 +84,7 @@ _cP = 0.01;
 
 _removeItemSuccess = true;
 _invSize = count _oldItem;
-for [{_i = 0},{_i < _invSize - 1},{_i = _i + 2}] do {
+for [{_i=0},{_i<_invSize-1},{_i=_i+2}] do {
 
 	_handledItem = [_oldItem select _i,1] call life_fnc_varHandle;
 	if(!([false,_handledItem,_oldItem select _i+1] call life_fnc_handleInv)) exitWith {_removeItemSuccess = false;};
@@ -96,25 +103,39 @@ while{true} do
 	if(_cP >= 1) exitWith {};
 };
 
-_invSize = count _oldItem;
-
 if(_itemFilter == "backpack") then{
+	if(backpack player == "") then{
 		player addBackpack _newItem;
-} else {
-	if(_itemFilter == "item") then{
-		_handledItem = [_newItem,1] call life_fnc_varHandle;
-		if([true,_handledItem,1] call life_fnc_handleInv) then {
-			exitWith{};
-		} else {
-			for [{_i = 0},{_i < _invSize - 1},{_i = _i + 2}] do {
-				_handledItem = [_oldItem select _i,1] call life_fnc_varHandle;
-				[true,_handledItem,_oldItem select _i+1] call life_fnc_handleInv;
-			};
-		};
+	}else{
+		hint localize "STR_CRAFT_AR_Backpack";
+		life_is_processing = false;
+	};
+};
+
+if(_itemFilter == "item") then{
+	_handledItem = [_newItem,1] call life_fnc_varHandle;
+	[true,_handledItem,1] call life_fnc_handleInv;
+};
+
+if(_itemFilter == "uniform") then{
+	if(uniform player == "") then{
+		player addUniform _newItem;
+	}else{
+		hint localize "STR_CRAFT_AR_Uniform";
+		life_is_processing = false;
+	};
+};
+
+if(_itemFilter == "weapon") then{
+
+	if(player canAdd _newItem) then{
+		player addItem _newItem;
 	} else {
-		if(!(player addItem _newItem)) exitWith {
+		if(currentWeapon player == "") then{
+			player addWeapon _newItem;
+		}else{
 			5 cutText ["","PLAIN"];
-			for [{_i = 0},{_i < _invSize - 1},{_i = _i + 2}] do {
+			for [{_i=0},{_i<_invSize-1},{_i=_i+2}] do {
 				_handledItem = [_oldItem select _i,1] call life_fnc_varHandle;
 				[true,_handledItem,_oldItem select _i+1] call life_fnc_handleInv;
 			};

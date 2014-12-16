@@ -206,23 +206,6 @@ switch (_vehicle) do
 		};
 	};
 
-	case "cl3_reventon_white":
-	{
-		switch (_index) do
-		{
-			case 0: {_color = "Camo 1"};
-			case 1: {_color = "Camo 2"};
-			case 2: {_color = "Camo 3"};
-			case 3: {_color = "Camo 4"};
-			case 4: {_color = "Camo 5"};
-			case 5: {_color = "Camo 6"};
-			case 6: {_color = "Camo 7"};
-			case 7: {_color = "Camo 8"};
-			case 8: {_color = "Camo 9"};
-			case 9: {_color = "Camo 10"};
-			case 10: {_color = "Camo 11"};
-		};
-	};
 
 };
 _color;

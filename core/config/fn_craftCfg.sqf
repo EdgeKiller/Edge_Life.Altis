@@ -31,7 +31,7 @@ switch(_craft) do
 		};
 	};
 
-	case "cloth":
+	case "uniform":
 	{
 		switch(true) do
 		{

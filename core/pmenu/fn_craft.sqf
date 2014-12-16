@@ -24,7 +24,7 @@ _filter = _dialog displayCtrl 673;
 _filter lbAdd localize "STR_CRAFT_FILTER_Weapon";
 _filter lbSetData[(lbSize _filter)-1,"weapon"];
 _filter lbAdd localize "STR_CRAFT_FILTER_Uniform";
-_filter lbSetData[(lbSize _filter)-1,"cloth"];
+_filter lbSetData[(lbSize _filter)-1,"uniform"];
 _filter lbAdd localize "STR_CRAFT_FILTER_Backpack";
 _filter lbSetData[(lbSize _filter)-1,"backpack"];
 _filter lbAdd localize "STR_CRAFT_FILTER_Item";
